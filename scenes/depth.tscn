@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://ynhcb1ucgvb3"]
+[gd_scene load_steps=5 format=3 uid="uid://ynhcb1ucgvb3"]
 
+[ext_resource type="Script" uid="uid://bnbqxxgp6vmpc" path="res://scripts/depth.gd" id="1_72okm"]
 [ext_resource type="Texture2D" uid="uid://8hyvs05kamex" path="res://assets/Sprites/Boaty.png" id="1_gt344"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wggui"]
@@ -12,6 +13,7 @@ _data = {
 point_count = 2
 
 [node name="depth" type="Node2D"]
+script = ExtResource("1_72okm")
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -26,3 +28,5 @@ texture = ExtResource("1_gt344")
 [node name="Path" type="Path2D" parent="."]
 unique_name_in_owner = true
 curve = SubResource("Curve2D_wggui")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]

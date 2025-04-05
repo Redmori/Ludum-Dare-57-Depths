@@ -1,13 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://dj7njok0vlw58"]
+[gd_scene load_steps=6 format=3 uid="uid://dj7njok0vlw58"]
 
-[ext_resource type="Script" uid="uid://cngpb7ql4ohud" path="res://scenes/base.gd" id="1_baglu"]
+[ext_resource type="Script" uid="uid://cngpb7ql4ohud" path="res://scripts/base.gd" id="1_baglu"]
 [ext_resource type="Texture2D" uid="uid://cltv0u21tksxj" path="res://assets/Sprites/icon.svg" id="1_pvqg0"]
+[ext_resource type="Script" uid="uid://im657148srxt" path="res://scripts/base_resupply.gd" id="3_t45w4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_baglu"]
 size = Vector2(18, 180)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t45w4"]
+size = Vector2(33, 24)
+
 [node name="base" type="Area2D"]
-collision_mask = 3
+collision_mask = 2
 script = ExtResource("1_baglu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -20,4 +24,13 @@ position = Vector2(-9, 90)
 shape = SubResource("RectangleShape2D_baglu")
 debug_color = Color(0.713264, 0.0948078, 0.278946, 0.42)
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="Resupply" type="Area2D" parent="."]
+script = ExtResource("3_t45w4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Resupply"]
+position = Vector2(-1.5, 12)
+shape = SubResource("RectangleShape2D_t45w4")
+debug_color = Color(0, 0.643202, 0.304316, 0.42)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="Resupply" to="." method="_on_resupply_body_entered"]

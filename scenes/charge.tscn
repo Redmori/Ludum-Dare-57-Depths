@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2k5lf1jiismy"]
+
+[ext_resource type="Texture2D" uid="uid://b53f3x0am22x8" path="res://assets/Sprites/depthCharge.png" id="1_3wx01"]
+[ext_resource type="Script" uid="uid://bfsvibvi8gj6p" path="res://scripts/charge.gd" id="1_jyajj"]
+[ext_resource type="PackedScene" uid="uid://cwu2uti4b6pps" path="res://scenes/explosion.tscn" id="2_25ywb"]
+
+[node name="charge" type="Node2D"]
+script = ExtResource("1_jyajj")
+explosion = ExtResource("2_25ywb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3wx01")

@@ -1,15 +1,16 @@
 [gd_scene load_steps=6 format=3 uid="uid://dxqxdh0vyn3ho"]
 
 [ext_resource type="PackedScene" uid="uid://cmfuennfc3qx8" path="res://scenes/player.tscn" id="1_uwrxv"]
-[ext_resource type="Script" uid="uid://dbu2l08ig2b2m" path="res://scenes/enemy_spawner.gd" id="2_lnu2h"]
+[ext_resource type="Script" uid="uid://dbu2l08ig2b2m" path="res://scripts/enemy_spawner.gd" id="2_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://ynhcb1ucgvb3" path="res://scenes/depth.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bkhcljcbjtevi" path="res://scenes/enemy.tscn" id="3_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://dj7njok0vlw58" path="res://scenes/base.tscn" id="5_iywne"]
 
 [node name="Game" type="Node2D"]
 
-[node name="player" parent="." instance=ExtResource("1_uwrxv")]
+[node name="player" parent="." node_paths=PackedStringArray("depth") instance=ExtResource("1_uwrxv")]
 position = Vector2(219, 17)
+depth = NodePath("../depthcontroller")
 
 [node name="depthcontroller" type="Node2D" parent="."]
 script = ExtResource("2_lnu2h")
