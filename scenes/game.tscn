@@ -1,15 +1,85 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxqxdh0vyn3ho"]
+[gd_scene load_steps=21 format=3 uid="uid://dxqxdh0vyn3ho"]
 
 [ext_resource type="PackedScene" uid="uid://cmfuennfc3qx8" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://dbu2l08ig2b2m" path="res://scripts/enemy_spawner.gd" id="2_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://ynhcb1ucgvb3" path="res://scenes/depth.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bkhcljcbjtevi" path="res://scenes/enemy.tscn" id="3_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://dj7njok0vlw58" path="res://scenes/base.tscn" id="5_iywne"]
+[ext_resource type="Texture2D" uid="uid://5rilx8axscef" path="res://assets/Sprites/Lane_1.png" id="5_kvpfn"]
+[ext_resource type="Texture2D" uid="uid://b4dee5cewunut" path="res://assets/Sprites/Lane_5.png" id="5_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://bq5mpkbdgrtgm" path="res://assets/Sprites/Lane_2.png" id="6_dinhu"]
+[ext_resource type="Texture2D" uid="uid://b8vgh35c5p34n" path="res://assets/Spritesheets/waves.png" id="6_p57ef"]
+[ext_resource type="Texture2D" uid="uid://d1awskw4gr6ij" path="res://assets/Sprites/Lane_3.png" id="7_kvuet"]
+[ext_resource type="Texture2D" uid="uid://dw6crr0u1jgb8" path="res://assets/Sprites/Lane_4.png" id="8_trtic"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5sy4"]
+atlas = ExtResource("6_p57ef")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gee14"]
+atlas = ExtResource("6_p57ef")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tnpc"]
+atlas = ExtResource("6_p57ef")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtaks"]
+atlas = ExtResource("6_p57ef")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvpfn"]
+atlas = ExtResource("6_p57ef")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dinhu"]
+atlas = ExtResource("6_p57ef")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvuet"]
+atlas = ExtResource("6_p57ef")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trtic"]
+atlas = ExtResource("6_p57ef")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ir15t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5sy4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gee14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tnpc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtaks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvpfn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dinhu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvuet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trtic")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Game" type="Node2D"]
 
 [node name="player" parent="." node_paths=PackedStringArray("depth") instance=ExtResource("1_uwrxv")]
-position = Vector2(219, 17)
+position = Vector2(219, 14)
 depth = NodePath("../depthcontroller")
 
 [node name="depthcontroller" type="Node2D" parent="."]
@@ -21,22 +91,116 @@ enemy = ExtResource("3_lbhrr")
 [node name="depth" parent="depthcontroller/lanes" instance=ExtResource("2_yqjtg")]
 position = Vector2(160, 36)
 
+[node name="Sprite2D" type="Sprite2D" parent="depthcontroller/lanes/depth"]
+z_index = -5
+position = Vector2(0, -2)
+texture = ExtResource("5_kvpfn")
+
 [node name="depth2" parent="depthcontroller/lanes" instance=ExtResource("2_yqjtg")]
 position = Vector2(160, 68)
+
+[node name="Sprite2D" type="Sprite2D" parent="depthcontroller/lanes/depth2"]
+z_index = -5
+texture = ExtResource("6_dinhu")
 
 [node name="depth3" parent="depthcontroller/lanes" instance=ExtResource("2_yqjtg")]
 position = Vector2(160, 100)
 
+[node name="Sprite2D" type="Sprite2D" parent="depthcontroller/lanes/depth3"]
+z_index = -5
+texture = ExtResource("7_kvuet")
+
 [node name="depth4" parent="depthcontroller/lanes" instance=ExtResource("2_yqjtg")]
 position = Vector2(160, 132)
 
+[node name="Sprite2D" type="Sprite2D" parent="depthcontroller/lanes/depth4"]
+z_index = -5
+texture = ExtResource("8_trtic")
+
 [node name="depth5" parent="depthcontroller/lanes" instance=ExtResource("2_yqjtg")]
 position = Vector2(160, 164)
+
+[node name="Sprite2D" type="Sprite2D" parent="depthcontroller/lanes/depth5"]
+z_index = -5
+texture = ExtResource("5_u5sy4")
 
 [node name="Timer" type="Timer" parent="depthcontroller"]
 wait_time = 2.0
 autostart = true
 
 [node name="base" parent="." instance=ExtResource("5_iywne")]
+
+[node name="Waves" type="Node2D" parent="."]
+position = Vector2(16, 5)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Waves"]
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_ir15t")
+autoplay = "default"
+frame = 6
+frame_progress = 0.155935
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Waves"]
+position = Vector2(32, -1)
+sprite_frames = SubResource("SpriteFrames_ir15t")
+autoplay = "default"
+frame = 6
+frame_progress = 0.155935
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Waves"]
+position = Vector2(64, -1)
+sprite_frames = SubResource("SpriteFrames_ir15t")
+autoplay = "default"
+frame = 6
+frame_progress = 0.155935
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="Waves"]
+position = Vector2(96, -1)
+sprite_frames = SubResource("SpriteFrames_ir15t")
+autoplay = "default"
+frame = 6
+frame_progress = 0.155935
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="Waves"]
+position = Vector2(128, -1)
+sprite_frames = SubResource("SpriteFrames_ir15t")
+autoplay = "default"
+frame = 6
+frame_progress = 0.155935
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="Waves"]
+position = Vector2(160, -1)
+sprite_frames = SubResource("SpriteFrames_ir15t")
+autoplay = "default"
+frame = 6
+frame_progress = 0.155935
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="Waves"]
+position = Vector2(192, -1)
+sprite_frames = SubResource("SpriteFrames_ir15t")
+autoplay = "default"
+frame = 6
+frame_progress = 0.155935
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="Waves"]
+position = Vector2(224, -1)
+sprite_frames = SubResource("SpriteFrames_ir15t")
+autoplay = "default"
+frame = 6
+frame_progress = 0.155935
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="Waves"]
+position = Vector2(256, -1)
+sprite_frames = SubResource("SpriteFrames_ir15t")
+autoplay = "default"
+frame = 6
+frame_progress = 0.155935
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="Waves"]
+position = Vector2(288, -1)
+sprite_frames = SubResource("SpriteFrames_ir15t")
+autoplay = "default"
+frame = 6
+frame_progress = 0.155935
 
 [connection signal="timeout" from="depthcontroller/Timer" to="depthcontroller" method="_on_timer_timeout"]
