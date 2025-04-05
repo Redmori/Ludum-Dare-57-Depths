@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1awskw4gr6ij"
-path="res://.godot/imported/Lane_3.png-822ce971619864de96a214eb39da8a42.ctex"
+uid="uid://5rilx8axscef"
+path="res://.godot/imported/Lane_1.png-9176ff56eefaadcac6a974d6a10e94e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprites/Lane_3.png"
-dest_files=["res://.godot/imported/Lane_3.png-822ce971619864de96a214eb39da8a42.ctex"]
+source_file="res://assets/Sprites/Background/Lane_1.png"
+dest_files=["res://.godot/imported/Lane_1.png-9176ff56eefaadcac6a974d6a10e94e5.ctex"]
 
 [params]
 

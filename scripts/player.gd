@@ -36,12 +36,36 @@ func _physics_process(delta):
 		current_target = 0
 	
 	velocity.x = current_target -  position.x
-	if velocity.x >= 0:
-		%Sprite2D.flip_h = true
-		%claw.position.x = -abs(%claw.position.x)
+	#if velocity.x >= 0:
+		#%Sprite2D.flip_h = true
+		#%claw.position.x = -abs(%claw.position.x)
+	#else:
+		#%Sprite2D.flip_h = false
+		#%claw.position.x = abs(%claw.position.x)
+		
+	
+	if velocity.x < -14:
+		%Sprite2D.frame = 0
+	elif velocity.x < -10:
+		%Sprite2D.frame = 1
+	elif velocity.x < -6:
+		%Sprite2D.frame = 2
+	elif velocity.x < -2:
+		%Sprite2D.frame = 3
+	elif velocity.x > 14:
+		%Sprite2D.frame = 8
+	elif velocity.x > 10:
+		%Sprite2D.frame = 7
+	elif velocity.x > 6:
+		%Sprite2D.frame = 6
+	elif velocity.x > 2:
+		%Sprite2D.frame = 5
 	else:
-		%Sprite2D.flip_h = false
-		%claw.position.x = abs(%claw.position.x)
+		%Sprite2D.frame = 4
+		
+	
+		
+		
 
 
 	move_and_slide()

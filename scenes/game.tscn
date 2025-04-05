@@ -5,12 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://ynhcb1ucgvb3" path="res://scenes/depth.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bkhcljcbjtevi" path="res://scenes/enemy.tscn" id="3_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://dj7njok0vlw58" path="res://scenes/base.tscn" id="5_iywne"]
-[ext_resource type="Texture2D" uid="uid://5rilx8axscef" path="res://assets/Sprites/Lane_1.png" id="5_kvpfn"]
-[ext_resource type="Texture2D" uid="uid://b4dee5cewunut" path="res://assets/Sprites/Lane_5.png" id="5_u5sy4"]
-[ext_resource type="Texture2D" uid="uid://bq5mpkbdgrtgm" path="res://assets/Sprites/Lane_2.png" id="6_dinhu"]
+[ext_resource type="Texture2D" uid="uid://5rilx8axscef" path="res://assets/Sprites/Background/Lane_1.png" id="5_kvpfn"]
+[ext_resource type="Texture2D" uid="uid://b4dee5cewunut" path="res://assets/Sprites/Background/Lane_5.png" id="5_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://bq5mpkbdgrtgm" path="res://assets/Sprites/Background/Lane_2.png" id="6_dinhu"]
 [ext_resource type="Texture2D" uid="uid://b8vgh35c5p34n" path="res://assets/Spritesheets/waves.png" id="6_p57ef"]
-[ext_resource type="Texture2D" uid="uid://d1awskw4gr6ij" path="res://assets/Sprites/Lane_3.png" id="7_kvuet"]
-[ext_resource type="Texture2D" uid="uid://dw6crr0u1jgb8" path="res://assets/Sprites/Lane_4.png" id="8_trtic"]
+[ext_resource type="Texture2D" uid="uid://d1awskw4gr6ij" path="res://assets/Sprites/Background/Lane_3.png" id="7_kvuet"]
+[ext_resource type="Texture2D" uid="uid://dw6crr0u1jgb8" path="res://assets/Sprites/Background/Lane_4.png" id="8_trtic"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u5sy4"]
 atlas = ExtResource("6_p57ef")

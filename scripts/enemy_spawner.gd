@@ -26,7 +26,6 @@ func _on_timer_timeout():
 func set_target(target):
 	if target is Depth:
 		current_target = target
-		print(target)
 
 func get_target():
 	return current_target
