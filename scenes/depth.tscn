@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://ynhcb1ucgvb3"]
+
+[ext_resource type="Texture2D" uid="uid://cltv0u21tksxj" path="res://assets/icon.svg" id="1_wggui"]
+[ext_resource type="PackedScene" uid="uid://bkhcljcbjtevi" path="res://scenes/enemy.tscn" id="2_gt344"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wggui"]
+size = Vector2(1684, 110)
+
+[sub_resource type="Curve2D" id="Curve2D_wggui"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 850, 0, 0, 0, 0, 0, -850, 0)
+}
+point_count = 2
+
+[node name="depth" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_wggui")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.313726)
+scale = Vector2(13.1875, 0.875)
+texture = ExtResource("1_wggui")
+
+[node name="Path" type="Path2D" parent="."]
+curve = SubResource("Curve2D_wggui")
+
+[node name="enemy" parent="Path" instance=ExtResource("2_gt344")]
+position = Vector2(850, 0)
+rotation = 3.14159

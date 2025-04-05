@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxqxdh0vyn3ho"]
+
+[ext_resource type="PackedScene" uid="uid://cmfuennfc3qx8" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://ynhcb1ucgvb3" path="res://scenes/depth.tscn" id="2_yqjtg"]
+
+[node name="Game" type="Node2D"]
+
+[node name="player" parent="." instance=ExtResource("1_uwrxv")]
+position = Vector2(289, 61)
+
+[node name="depth" parent="." instance=ExtResource("2_yqjtg")]
+position = Vector2(606, 149)
+
+[node name="depth2" parent="." instance=ExtResource("2_yqjtg")]
+position = Vector2(606, 259)
+
+[node name="depth3" parent="." instance=ExtResource("2_yqjtg")]
+position = Vector2(606, 370)
+
+[node name="depth4" parent="." instance=ExtResource("2_yqjtg")]
+position = Vector2(606, 482)
+
+[node name="depth5" parent="." instance=ExtResource("2_yqjtg")]
+position = Vector2(606, 593)
