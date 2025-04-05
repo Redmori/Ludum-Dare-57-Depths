@@ -1,24 +1,41 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxqxdh0vyn3ho"]
+[gd_scene load_steps=6 format=3 uid="uid://dxqxdh0vyn3ho"]
 
 [ext_resource type="PackedScene" uid="uid://cmfuennfc3qx8" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://dbu2l08ig2b2m" path="res://scenes/enemy_spawner.gd" id="2_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://ynhcb1ucgvb3" path="res://scenes/depth.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://bkhcljcbjtevi" path="res://scenes/enemy.tscn" id="3_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://dj7njok0vlw58" path="res://scenes/base.tscn" id="5_iywne"]
 
 [node name="Game" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(289, 61)
+position = Vector2(219, 17)
 
-[node name="depth" parent="." instance=ExtResource("2_yqjtg")]
-position = Vector2(606, 149)
+[node name="depthcontroller" type="Node2D" parent="."]
+script = ExtResource("2_lnu2h")
+enemy = ExtResource("3_lbhrr")
 
-[node name="depth2" parent="." instance=ExtResource("2_yqjtg")]
-position = Vector2(606, 259)
+[node name="lanes" type="Node2D" parent="depthcontroller"]
 
-[node name="depth3" parent="." instance=ExtResource("2_yqjtg")]
-position = Vector2(606, 370)
+[node name="depth" parent="depthcontroller/lanes" instance=ExtResource("2_yqjtg")]
+position = Vector2(160, 36)
 
-[node name="depth4" parent="." instance=ExtResource("2_yqjtg")]
-position = Vector2(606, 482)
+[node name="depth2" parent="depthcontroller/lanes" instance=ExtResource("2_yqjtg")]
+position = Vector2(160, 68)
 
-[node name="depth5" parent="." instance=ExtResource("2_yqjtg")]
-position = Vector2(606, 593)
+[node name="depth3" parent="depthcontroller/lanes" instance=ExtResource("2_yqjtg")]
+position = Vector2(160, 100)
+
+[node name="depth4" parent="depthcontroller/lanes" instance=ExtResource("2_yqjtg")]
+position = Vector2(160, 132)
+
+[node name="depth5" parent="depthcontroller/lanes" instance=ExtResource("2_yqjtg")]
+position = Vector2(160, 164)
+
+[node name="Timer" type="Timer" parent="depthcontroller"]
+wait_time = 2.0
+autostart = true
+
+[node name="base" parent="." instance=ExtResource("5_iywne")]
+
+[connection signal="timeout" from="depthcontroller/Timer" to="depthcontroller" method="_on_timer_timeout"]
