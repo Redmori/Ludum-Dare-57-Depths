@@ -7,6 +7,7 @@ const ACCELERATION = 100
 var target_position = position.x
 var ammo = 1
 var max_ammo = 1
+var in_dock = false
 
 @export var charge : PackedScene
 
@@ -27,13 +28,10 @@ func _physics_process(delta):
 	
 	if abs(direction) < 0.01: #deadzone
 		velocity.x = 0
-		print("stop")
 	elif (velocity.x * velocity.x) / ( 1.5 * ACCELERATION) >= abs(direction) and sign(direction) == sign(velocity.x):
 		velocity.x += sign(direction) * -ACCELERATION * delta # deccelerate
-		print("deccelerating")
 	else:
 		velocity.x += sign(direction) * ACCELERATION * delta # accelerate
-		print("accelerating")
 		
 	#velocity.x += sign(direction) * ACCELERATION * delta # accelerate
 		
@@ -88,7 +86,7 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		target_position = event.position.x
 		
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed() and ammo > 0:
+	if not in_dock and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed() and ammo > 0:
 		%claw.visible = false
 		var new_charge = charge.instantiate()
 		get_tree().get_root().add_child(new_charge)
@@ -97,6 +95,10 @@ func _input(event):
 		new_charge.target = depth.get_target()
 
 func resupply(amount):
+	in_dock = true
 	ammo += amount
 	ammo = min(ammo, max_ammo)
 	%claw.visible = true
+
+func leave_dock():
+	in_dock = false

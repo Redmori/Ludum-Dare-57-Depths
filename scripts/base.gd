@@ -18,4 +18,9 @@ func _on_resupply_body_entered(body):
 
 
 func _on_area_entered(area):
-	area.queue_free()
+	area.get_parent().queue_free()
+
+
+func _on_resupply_body_exited(body):
+	if body is Player:
+		body.leave_dock()

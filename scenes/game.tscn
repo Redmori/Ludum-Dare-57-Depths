@@ -129,6 +129,7 @@ wait_time = 2.0
 autostart = true
 
 [node name="base" parent="." instance=ExtResource("5_iywne")]
+z_index = -3
 
 [node name="Waves" type="Node2D" parent="."]
 position = Vector2(16, 5)
