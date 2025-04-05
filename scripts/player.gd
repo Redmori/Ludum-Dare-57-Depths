@@ -1,32 +1,18 @@
 class_name Player extends CharacterBody2D
 
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const SPEED = 80.0
+const ACCELERATION = 100
 
 var target_position = position.x
 var ammo = 1
+var max_ammo = 1
 
 @export var charge : PackedScene
 
 @export var depth : Node2D
 
 func _physics_process(delta):
-	## Add the gravity.
-	##if not is_on_floor():
-		##velocity += get_gravity() * delta
-#
-	## Handle jump.
-	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		#velocity.y = JUMP_VELOCITY
-#
-	## Get the input direction and handle the movement/deceleration.
-	## As good practice, you should replace UI actions with custom gameplay actions.
-	#var direction = Input.get_axis("ui_left", "ui_right")
-	#if direction:
-		#velocity.x = direction * SPEED
-	#else:
-		#velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	var current_target
 
@@ -34,8 +20,27 @@ func _physics_process(delta):
 		current_target = target_position
 	else:
 		current_target = 0
+		
+		
 	
-	velocity.x = current_target -  position.x
+	var direction = current_target - position.x
+	
+	if abs(direction) < 0.01: #deadzone
+		velocity.x = 0
+		print("stop")
+	elif (velocity.x * velocity.x) / ( 1.5 * ACCELERATION) >= abs(direction) and sign(direction) == sign(velocity.x):
+		velocity.x += sign(direction) * -ACCELERATION * delta # deccelerate
+		print("deccelerating")
+	else:
+		velocity.x += sign(direction) * ACCELERATION * delta # accelerate
+		print("accelerating")
+		
+	#velocity.x += sign(direction) * ACCELERATION * delta # accelerate
+		
+	if abs(velocity.x) > SPEED:
+		velocity.x = SPEED * sign(velocity.x)
+		
+	#velocity.x = current_target -  position.x
 	#if velocity.x >= 0:
 		#%Sprite2D.flip_h = true
 		#%claw.position.x = -abs(%claw.position.x)
@@ -44,24 +49,33 @@ func _physics_process(delta):
 		#%claw.position.x = abs(%claw.position.x)
 		
 	
-	if velocity.x < -14:
+	if velocity.x < -16:
 		%Sprite2D.frame = 0
-	elif velocity.x < -10:
+		%claw.position.x = 13
+	elif velocity.x < -12:
 		%Sprite2D.frame = 1
-	elif velocity.x < -6:
+		%claw.position.x = 10
+	elif velocity.x < -8:
 		%Sprite2D.frame = 2
-	elif velocity.x < -2:
+		%claw.position.x = 7
+	elif velocity.x < -4:
 		%Sprite2D.frame = 3
-	elif velocity.x > 14:
+		%claw.position.x = 4
+	elif velocity.x > 16:
 		%Sprite2D.frame = 8
-	elif velocity.x > 10:
+		%claw.position.x = -13
+	elif velocity.x > 12:
 		%Sprite2D.frame = 7
-	elif velocity.x > 6:
+		%claw.position.x = -10
+	elif velocity.x > 8:
 		%Sprite2D.frame = 6
-	elif velocity.x > 2:
+		%claw.position.x = -7
+	elif velocity.x > 4:
 		%Sprite2D.frame = 5
+		%claw.position.x = -4
 	else:
 		%Sprite2D.frame = 4
+		%claw.position.x = 0
 		
 	
 		
@@ -84,4 +98,5 @@ func _input(event):
 
 func resupply(amount):
 	ammo += amount
+	ammo = min(ammo, max_ammo)
 	%claw.visible = true
