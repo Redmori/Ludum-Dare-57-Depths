@@ -9,19 +9,13 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-
-
-func _on_resupply_body_entered(body):
-	if body is Player:
-		if body.resupply(1):
-			%PickUP.play()
-
+	
 
 
 func _on_area_entered(area):
-	area.get_parent().queue_free()
+	visible = true
+	
 
 
-func _on_resupply_body_exited(body):
-	if body is Player:
-		body.leave_dock()
+func _on_area_exited(area):
+	visible = false

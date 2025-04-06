@@ -1,19 +1,29 @@
-[gd_scene load_steps=24 format=3 uid="uid://dxqxdh0vyn3ho"]
+[gd_scene load_steps=35 format=3 uid="uid://dxqxdh0vyn3ho"]
 
 [ext_resource type="PackedScene" uid="uid://cmfuennfc3qx8" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://dbu2l08ig2b2m" path="res://scripts/enemy_spawner.gd" id="2_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://ynhcb1ucgvb3" path="res://scenes/depth.tscn" id="2_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://lgejhuvkmhtp" path="res://scenes/enemies/sown_enemy.tscn" id="3_kvuet"]
-[ext_resource type="PackedScene" uid="uid://b1ptvjtlr3vdc" path="res://scenes/enemies/sub_enemy.tscn" id="3_trtic"]
-[ext_resource type="PackedScene" uid="uid://pcl7pivs4ebt" path="res://scenes/enemies/sup_enemy.tscn" id="4_kvuet"]
+[ext_resource type="PackedScene" uid="uid://cxsrig2pqm0vc" path="res://scenes/enemies/sown_enemy.tscn" id="3_kvuet"]
+[ext_resource type="PackedScene" uid="uid://ccwdaigd1hva2" path="res://scenes/enemies/sub_enemy.tscn" id="3_trtic"]
+[ext_resource type="PackedScene" uid="uid://cttriekmgdjd1" path="res://scenes/enemies/sup_enemy.tscn" id="4_kvuet"]
 [ext_resource type="PackedScene" uid="uid://dj7njok0vlw58" path="res://scenes/base.tscn" id="5_iywne"]
 [ext_resource type="Texture2D" uid="uid://5rilx8axscef" path="res://assets/Sprites/Background/Lane_1.png" id="5_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://b4dee5cewunut" path="res://assets/Sprites/Background/Lane_5.png" id="5_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://bq5mpkbdgrtgm" path="res://assets/Sprites/Background/Lane_2.png" id="6_dinhu"]
+[ext_resource type="PackedScene" uid="uid://bymp4a32bd1t2" path="res://scenes/enemies/diving_bell_enemy.tscn" id="6_ir15t"]
 [ext_resource type="Texture2D" uid="uid://b8vgh35c5p34n" path="res://assets/Spritesheets/waves.png" id="6_p57ef"]
 [ext_resource type="Texture2D" uid="uid://d1awskw4gr6ij" path="res://assets/Sprites/Background/Lane_3.png" id="7_kvuet"]
 [ext_resource type="Texture2D" uid="uid://dw6crr0u1jgb8" path="res://assets/Sprites/Background/Lane_4.png" id="8_trtic"]
 [ext_resource type="AudioStream" uid="uid://dtgep5c7wl27u" path="res://assets/Sounds/Oh, Ocean Blues.wav" id="13_kvuet"]
+[ext_resource type="Texture2D" uid="uid://fuiildvpnxtb" path="res://assets/Spritesheets/belldirt.png" id="16_ca42v"]
+[ext_resource type="Script" uid="uid://ctcavucaks6ha" path="res://scripts/bell_dirt.gd" id="16_rysoc"]
+[ext_resource type="Texture2D" uid="uid://o1fe035blppo" path="res://assets/Sprites/Background/surface.png" id="18_ssvqc"]
+
+[sub_resource type="Curve2D" id="Curve2D_trtic"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 40, 200, 0, 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u5sy4"]
 atlas = ExtResource("6_p57ef")
@@ -79,6 +89,45 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rysoc"]
+size = Vector2(22, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssvqc"]
+atlas = ExtResource("16_ca42v")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_264po"]
+atlas = ExtResource("16_ca42v")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kice"]
+atlas = ExtResource("16_ca42v")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5newe"]
+atlas = ExtResource("16_ca42v")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_37s47"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssvqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_264po")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kice")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5newe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Game" type="Node2D"]
 
 [node name="player" parent="." node_paths=PackedStringArray("depth") instance=ExtResource("1_uwrxv")]
@@ -90,6 +139,7 @@ script = ExtResource("2_lnu2h")
 sub = ExtResource("3_trtic")
 sup = ExtResource("4_kvuet")
 sown = ExtResource("3_kvuet")
+bell = ExtResource("6_ir15t")
 
 [node name="lanes" type="Node2D" parent="depthcontroller"]
 
@@ -130,11 +180,14 @@ z_index = -5
 texture = ExtResource("5_u5sy4")
 
 [node name="Timer" type="Timer" parent="depthcontroller"]
-wait_time = 2.0
+wait_time = 5.0
 autostart = true
 
+[node name="bellpath" type="Path2D" parent="depthcontroller"]
+curve = SubResource("Curve2D_trtic")
+
 [node name="base" parent="." instance=ExtResource("5_iywne")]
-z_index = -3
+z_index = 6
 
 [node name="Waves" type="Node2D" parent="."]
 position = Vector2(16, 5)
@@ -209,8 +262,32 @@ autoplay = "default"
 frame = 6
 frame_progress = 0.155935
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_kvuet")
 autoplay = true
+bus = &"music"
+
+[node name="BellDirt" type="Area2D" parent="."]
+visible = false
+position = Vector2(40, 164)
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("16_rysoc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BellDirt"]
+position = Vector2(-1, 12.5)
+shape = SubResource("RectangleShape2D_rysoc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BellDirt"]
+sprite_frames = SubResource("SpriteFrames_37s47")
+autoplay = "default"
+frame_progress = 0.175335
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -7
+position = Vector2(160, 8)
+texture = ExtResource("18_ssvqc")
 
 [connection signal="timeout" from="depthcontroller/Timer" to="depthcontroller" method="_on_timer_timeout"]
+[connection signal="area_entered" from="BellDirt" to="BellDirt" method="_on_area_entered"]
+[connection signal="area_exited" from="BellDirt" to="BellDirt" method="_on_area_exited"]

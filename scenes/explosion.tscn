@@ -1,8 +1,9 @@
-[gd_scene load_steps=37 format=3 uid="uid://cwu2uti4b6pps"]
+[gd_scene load_steps=38 format=3 uid="uid://cwu2uti4b6pps"]
 
 [ext_resource type="Texture2D" uid="uid://b8jjn2nhy8oaj" path="res://assets/Sprites/shockwave.png" id="1_17npe"]
 [ext_resource type="Script" uid="uid://c6s1lumarxvcs" path="res://scripts/explosion.gd" id="1_nfeox"]
 [ext_resource type="Texture2D" uid="uid://s1b8mef6cnn0" path="res://assets/Spritesheets/detonation_animation_spritesheet.png" id="3_aw4cw"]
+[ext_resource type="AudioStream" uid="uid://p23fmayigf0i" path="res://assets/Sounds/explosion.wav" id="4_3el85"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nfeox"]
 radius = 13.0
@@ -276,6 +277,7 @@ animations = [{
 script = ExtResource("1_nfeox")
 
 [node name="shockwave_right" type="Area2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(9, 0)
 collision_layer = 4
 
@@ -287,6 +289,7 @@ position = Vector2(-7, 0)
 shape = SubResource("CapsuleShape2D_nfeox")
 
 [node name="shockwave_left" type="Area2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(-50, 0)
 collision_layer = 4
 
@@ -305,6 +308,7 @@ libraries = {
 autoplay = "explosion_animation"
 
 [node name="explosion_left" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(-16, 0)
 sprite_frames = SubResource("SpriteFrames_bivod")
 autoplay = "default"
@@ -312,6 +316,7 @@ frame = 27
 frame_progress = 1.0
 
 [node name="explosion_right" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(16, 0)
 sprite_frames = SubResource("SpriteFrames_bivod")
 autoplay = "default"
@@ -319,4 +324,10 @@ frame = 27
 frame_progress = 1.0
 flip_h = true
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_3el85")
+autoplay = true
+bus = &"sfx"
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

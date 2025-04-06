@@ -1,8 +1,8 @@
 class_name Player extends CharacterBody2D
 
 
-const SPEED = 80.0
-const ACCELERATION = 100
+const SPEED = 100.0
+const ACCELERATION = 120
 
 var target_position = position.x
 var ammo = 1
@@ -20,7 +20,7 @@ func _physics_process(delta):
 	if ammo > 0:
 		current_target = target_position
 	else:
-		current_target = 0
+		current_target = 16
 		
 		
 	
@@ -96,9 +96,11 @@ func _input(event):
 
 func resupply(amount):
 	in_dock = true
+	var reloaded = ammo < max_ammo
 	ammo += amount
 	ammo = min(ammo, max_ammo)
 	%claw.visible = true
+	return reloaded
 
 func leave_dock():
 	in_dock = false

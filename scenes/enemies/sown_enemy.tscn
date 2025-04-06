@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://lgejhuvkmhtp"]
+[gd_scene load_steps=10 format=3 uid="uid://cxsrig2pqm0vc"]
 
 [ext_resource type="Script" uid="uid://kn7sttfl824t" path="res://scripts/enemy.gd" id="1_vo478"]
 [ext_resource type="Texture2D" uid="uid://b2lskbmt2jktv" path="res://assets/Sprites/sub.png" id="2_qndfj"]
@@ -37,9 +37,10 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="enemy" type="PathFollow2D"]
+[node name="enemy" type="PathFollow2D" node_paths=PackedStringArray("hit_timer")]
 rotates = false
 script = ExtResource("1_vo478")
+hit_timer = NodePath("HitTimer")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
@@ -58,6 +59,10 @@ sprite_frames = SubResource("SpriteFrames_nenq2")
 autoplay = "default"
 frame_progress = 0.729584
 
+[node name="HitTimer" type="Timer" parent="."]
+autostart = true
+
 [node name="type" parent="." instance=ExtResource("4_7u621")]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]

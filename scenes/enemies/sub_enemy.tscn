@@ -1,23 +1,23 @@
-[gd_scene load_steps=10 format=3 uid="uid://b1ptvjtlr3vdc"]
+[gd_scene load_steps=10 format=3 uid="uid://ccwdaigd1hva2"]
 
-[ext_resource type="Script" uid="uid://kn7sttfl824t" path="res://scripts/enemy.gd" id="1_18mk4"]
-[ext_resource type="Texture2D" uid="uid://b2lskbmt2jktv" path="res://assets/Sprites/sub.png" id="2_ubwon"]
-[ext_resource type="Texture2D" uid="uid://b4kqr50coalb0" path="res://assets/Spritesheets/wake.png" id="3_0bs6p"]
-[ext_resource type="PackedScene" uid="uid://bomjyq6bpdc7r" path="res://scenes/enemies/sub.tscn" id="4_tvto2"]
+[ext_resource type="Script" uid="uid://kn7sttfl824t" path="res://scripts/enemy.gd" id="1_7tknf"]
+[ext_resource type="Texture2D" uid="uid://b2lskbmt2jktv" path="res://assets/Sprites/sub.png" id="2_e4rnx"]
+[ext_resource type="Texture2D" uid="uid://b4kqr50coalb0" path="res://assets/Spritesheets/wake.png" id="3_v1c3v"]
+[ext_resource type="PackedScene" uid="uid://bomjyq6bpdc7r" path="res://scenes/enemies/sub.tscn" id="4_18mk4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
 size = Vector2(32, 17)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5uy6h"]
-atlas = ExtResource("3_0bs6p")
+atlas = ExtResource("3_v1c3v")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c4w8v"]
-atlas = ExtResource("3_0bs6p")
+atlas = ExtResource("3_v1c3v")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xwavj"]
-atlas = ExtResource("3_0bs6p")
+atlas = ExtResource("3_v1c3v")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nenq2"]
@@ -39,14 +39,14 @@ animations = [{
 
 [node name="enemy" type="PathFollow2D"]
 rotates = false
-script = ExtResource("1_18mk4")
+script = ExtResource("1_7tknf")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D"]
-texture = ExtResource("2_ubwon")
+texture = ExtResource("2_e4rnx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -3.5)
@@ -58,6 +58,6 @@ sprite_frames = SubResource("SpriteFrames_nenq2")
 autoplay = "default"
 frame_progress = 0.729584
 
-[node name="type" parent="." instance=ExtResource("4_tvto2")]
+[node name="type" parent="." instance=ExtResource("4_18mk4")]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

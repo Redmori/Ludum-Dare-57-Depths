@@ -1,25 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cnkn0xhld70p2"]
+[gd_scene load_steps=7 format=3 uid="uid://cnkn0xhld70p2"]
 
+[ext_resource type="Script" uid="uid://dul50au0lhpq" path="res://scripts/sup.gd" id="1_uiwf2"]
+[ext_resource type="PackedScene" uid="uid://bomjyq6bpdc7r" path="res://scenes/enemies/sub.tscn" id="2_4ondf"]
 [ext_resource type="Texture2D" uid="uid://dm0qn36r6thfq" path="res://assets/Sprites/spotlight.png" id="2_yrffd"]
-
-[sub_resource type="GDScript" id="GDScript_wjbk3"]
-script/source = "extends Node2D
-
-var speed = 50
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-func get_speed():
-	print(\"setting speed\")
-	return speed
-"
 
 [sub_resource type="Animation" id="Animation_c4w8v"]
 length = 0.001
@@ -60,7 +43,8 @@ _data = {
 }
 
 [node name="type" type="Node2D"]
-script = SubResource("GDScript_wjbk3")
+script = ExtResource("1_uiwf2")
+remnant = ExtResource("2_4ondf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-12, -1)

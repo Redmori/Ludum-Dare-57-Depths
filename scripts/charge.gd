@@ -1,6 +1,6 @@
 extends Node2D
 
-var SPEED = 100
+var SPEED = 50
 var target
 
 @export var explosion : PackedScene

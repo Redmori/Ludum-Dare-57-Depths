@@ -1,23 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bomjyq6bpdc7r"]
 
-[sub_resource type="GDScript" id="GDScript_wjbk3"]
-script/source = "extends Node2D
-
-var speed = 50
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-func get_speed():
-	print(\"setting speed\")
-	return speed
-"
+[ext_resource type="Script" uid="uid://dysos6xucgcun" path="res://scripts/sub.gd" id="1_l1o0e"]
 
 [node name="type" type="Node2D"]
-script = SubResource("GDScript_wjbk3")
+script = ExtResource("1_l1o0e")
