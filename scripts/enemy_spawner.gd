@@ -1,6 +1,8 @@
 extends Node2D
 
-@export var enemy: PackedScene
+@export var sub: PackedScene
+@export var sup : PackedScene
+@export var sown : PackedScene
 
 @onready var lanes = $lanes
 @onready var depths = lanes.get_children()
@@ -18,11 +20,20 @@ func _process(delta):
 
 
 func _on_timer_timeout():
-	var new_enemy = enemy.instantiate()
+	
+	var random_type = randi_range(0, 2)
+	var new_enemy
+	if random_type == 0:
+		new_enemy = sup.instantiate()
+	elif random_type == 1:
+		new_enemy = sown.instantiate()
+	else:
+		new_enemy = sub.instantiate()
+	
 	
 	var random_number = randi_range(0, depths.size()-1)
 	depths[random_number].get_node("Path").add_child(new_enemy)
-
+	
 func set_target(target):
 	if target is Depth:
 		current_target = target

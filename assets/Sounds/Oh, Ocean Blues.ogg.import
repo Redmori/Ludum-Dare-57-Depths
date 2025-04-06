@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://rcp2nvfw342m"
+path="res://.godot/imported/Oh, Ocean Blues.ogg-1bc8e8af1b62a2edffc733d630b82cfd.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Sounds/Oh, Ocean Blues.ogg"
+dest_files=["res://.godot/imported/Oh, Ocean Blues.ogg-1bc8e8af1b62a2edffc733d630b82cfd.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,9 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://dxqxdh0vyn3ho"]
+[gd_scene load_steps=24 format=3 uid="uid://dxqxdh0vyn3ho"]
 
 [ext_resource type="PackedScene" uid="uid://cmfuennfc3qx8" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://dbu2l08ig2b2m" path="res://scripts/enemy_spawner.gd" id="2_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://ynhcb1ucgvb3" path="res://scenes/depth.tscn" id="2_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://bkhcljcbjtevi" path="res://scenes/enemy.tscn" id="3_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://lgejhuvkmhtp" path="res://scenes/enemies/sown_enemy.tscn" id="3_kvuet"]
+[ext_resource type="PackedScene" uid="uid://b1ptvjtlr3vdc" path="res://scenes/enemies/sub_enemy.tscn" id="3_trtic"]
+[ext_resource type="PackedScene" uid="uid://pcl7pivs4ebt" path="res://scenes/enemies/sup_enemy.tscn" id="4_kvuet"]
 [ext_resource type="PackedScene" uid="uid://dj7njok0vlw58" path="res://scenes/base.tscn" id="5_iywne"]
 [ext_resource type="Texture2D" uid="uid://5rilx8axscef" path="res://assets/Sprites/Background/Lane_1.png" id="5_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://b4dee5cewunut" path="res://assets/Sprites/Background/Lane_5.png" id="5_u5sy4"]
@@ -11,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://b8vgh35c5p34n" path="res://assets/Spritesheets/waves.png" id="6_p57ef"]
 [ext_resource type="Texture2D" uid="uid://d1awskw4gr6ij" path="res://assets/Sprites/Background/Lane_3.png" id="7_kvuet"]
 [ext_resource type="Texture2D" uid="uid://dw6crr0u1jgb8" path="res://assets/Sprites/Background/Lane_4.png" id="8_trtic"]
+[ext_resource type="AudioStream" uid="uid://dtgep5c7wl27u" path="res://assets/Sounds/Oh, Ocean Blues.wav" id="13_kvuet"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u5sy4"]
 atlas = ExtResource("6_p57ef")
@@ -84,7 +87,9 @@ depth = NodePath("../depthcontroller")
 
 [node name="depthcontroller" type="Node2D" parent="."]
 script = ExtResource("2_lnu2h")
-enemy = ExtResource("3_lbhrr")
+sub = ExtResource("3_trtic")
+sup = ExtResource("4_kvuet")
+sown = ExtResource("3_kvuet")
 
 [node name="lanes" type="Node2D" parent="depthcontroller"]
 
@@ -203,5 +208,9 @@ sprite_frames = SubResource("SpriteFrames_ir15t")
 autoplay = "default"
 frame = 6
 frame_progress = 0.155935
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_kvuet")
+autoplay = true
 
 [connection signal="timeout" from="depthcontroller/Timer" to="depthcontroller" method="_on_timer_timeout"]
