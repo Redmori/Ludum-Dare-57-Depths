@@ -1,26 +1,11 @@
-# Godot MIDI Player for Godot Engine 4.x
+**Depth Charge** a Ludum Dare 57 project
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/E1E44AWTA)
+Oh no! The Dastardly Sub-nation is attacking… from the Depths!
 
-Software MIDI player library for Godot Engine 4.2 later
+Only one man is standing between them and world domination: John Deep and his trusty boat Boaty.
 
-## for Godot Engine 3
+Assist John Deep by indicating where to deploy depth charges and defeat the Dastardly Sub-nation through the innovative Depth Fuze Indicator System (tm pending).
 
-[see this repository](https://bitbucket.org/arlez80/godot-midi-player)
+Control where John Deep navigates boaty by hovering the mouse horizontally and how deep the depth charge should detonate by hovering the mouse vertically. Then click to deploy a depth charge. BOMBS AWAY!
 
-## Demo
-
-* [download](https://bitbucket.org/arlez80/godot-midi-player-g4/downloads/demo.zip)
-	* This demo can get MIDIInput events. You can play using MIDI keyboards!
-* BGM "failyland_gm.mid" from [IvyMaze]( http://ivymaze.sakura.ne.jp/ )
-* Youtube: [Demo #1](https://www.youtube.com/watch?v=SdrU4uRepVs)
-* Youtube: [Demo #2](https://www.youtube.com/watch?v=nn21P3eI4hs)
-* Youtube: [Demo #3](https://www.youtube.com/watch?v=dAYfFH-Fq2o)
-
-## License
-
-MIT License
-
-## Author
-
-* @arlez80 あるる / きのもと 結衣 ( Yui Kinomoto )
+Good Luck and Enjoy! Redmori & Stephen!
