@@ -185,8 +185,9 @@ wait_time = 5.0
 [node name="bellpath" type="Path2D" parent="depthcontroller"]
 curve = SubResource("Curve2D_trtic")
 
-[node name="base" parent="." instance=ExtResource("5_iywne")]
+[node name="base" parent="." node_paths=PackedStringArray("spawner") instance=ExtResource("5_iywne")]
 z_index = 6
+spawner = NodePath("../depthcontroller")
 
 [node name="Waves" type="Node2D" parent="."]
 position = Vector2(16, 5)
