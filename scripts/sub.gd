@@ -1,6 +1,6 @@
 extends Node2D
 
-var speed = 25
+var speed = 30
 
 var vspeed = 50
 var target_offset

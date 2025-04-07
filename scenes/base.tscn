@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dj7njok0vlw58"]
+[gd_scene load_steps=8 format=3 uid="uid://dj7njok0vlw58"]
 
 [ext_resource type="Script" uid="uid://cngpb7ql4ohud" path="res://scripts/base.gd" id="1_baglu"]
 [ext_resource type="Texture2D" uid="uid://dwq1pmtlkqy1r" path="res://assets/Sprites/base.png" id="2_baglu"]
+[ext_resource type="PackedScene" uid="uid://cwnx4uwxu7gcj" path="res://scenes/base_explosions.tscn" id="2_h5ip5"]
 [ext_resource type="AudioStream" uid="uid://dgavug0lt2ats" path="res://assets/Sounds/pick_up.wav" id="3_t45w4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_baglu"]
@@ -27,6 +28,7 @@ size = Vector2(33, 24)
 [node name="base" type="Area2D"]
 collision_mask = 2
 script = ExtResource("1_baglu")
+defeat_effect = ExtResource("2_h5ip5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(16, 90)
