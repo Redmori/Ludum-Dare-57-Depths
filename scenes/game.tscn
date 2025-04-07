@@ -181,7 +181,6 @@ texture = ExtResource("5_u5sy4")
 
 [node name="Timer" type="Timer" parent="depthcontroller"]
 wait_time = 5.0
-autostart = true
 
 [node name="bellpath" type="Path2D" parent="depthcontroller"]
 curve = SubResource("Curve2D_trtic")

@@ -11,14 +11,60 @@ extends Node2D
 
 var current_target : Node2D
 
+enum Enemy { SUB, SUP, SOWN, BELL}
+
+var event_list = []
+
+func add_event(enemy_type: int, timestamp: float, depth: int = -1) -> void:
+	event_list.append({"enemy": enemy_type, "timestamp": timestamp, "depth": depth})
+
+func check_and_spawn_enemies(t: float) -> void:
+	var events_to_remove = []
+	for event in event_list:
+		if event["timestamp"] <= t:
+			spawn_enemy(event["enemy"], event["depth"])
+			events_to_remove.append(event)  # Add event to remove list
+
+	# Now remove the processed events
+	for event in events_to_remove:
+		event_list.erase(event)
+
+func spawn_enemy(enemy_type: int, depth: int) -> void:
+	var new_enemy
+	
+	match enemy_type:
+		Enemy.SUB:
+			print("Spawning SUB enemy with depth: ", depth)
+			new_enemy = sub.instantiate()
+		Enemy.SUP:
+			print("Spawning SUP enemy with depth: ", depth)
+			new_enemy = sup.instantiate()
+		Enemy.SOWN:
+			print("Spawning SOWN enemy with depth: ", depth)
+			new_enemy = sown.instantiate()
+		Enemy.BELL:
+			print("Spawning BELL enemy")
+			new_enemy = bell.instantiate()
+			bellpath.add_child(new_enemy)
+	
+	if depth != -1:
+		depths[depth].get_node("Path").add_child(new_enemy)
+
+var wave_start_time = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	add_event(Enemy.SUB, 	2.0,	3) 
+	add_event(Enemy.SUP, 	5.0,	1) 
+	add_event(Enemy.SOWN, 	8.0,	0) 
+	add_event(Enemy.BELL, 	10.0	) 
+	
+	wave_start_time = 0
 
-
+var current_time = 0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	current_time += delta
+	check_and_spawn_enemies((current_time - wave_start_time))
 
 
 func _on_timer_timeout():
