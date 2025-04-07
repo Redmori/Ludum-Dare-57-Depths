@@ -11,6 +11,7 @@ extends Node2D
 
 @onready var charge = $AnimationPlayer
 @onready var wave_counter_anim = $AnimationPlayer2
+@onready var blackout = $AnimationPlayer3
 
 var current_target : Node2D
 
@@ -126,7 +127,7 @@ func _ready():
 		{ "enemy": Enemy.SUB,	"timestamp": 31.5,"depth": 2 },
 		{ "enemy": Enemy.BELL, 	"timestamp": 33.5, "depth": -1 },
 		{ "enemy": Enemy.BELL, 	"timestamp": 36.5, "depth": -1 },
-		{ "enemy": Enemy.END,	"timestamp": 50.0,	"depth": -1 },
+		{ "enemy": Enemy.END,	"timestamp": 45.0,	"depth": -1 },
 	])
 	
 	start_wave(0)
@@ -151,6 +152,9 @@ func start_wave(wave_index: int) -> void:
 				wave_counter_anim.play("w4")
 			4:
 				wave_counter_anim.play("w5")
+	else:
+		blackout.play("blackout")
+		
 
 func restart_wave() -> void:
 	if current_wave != -1:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://dxqxdh0vyn3ho"]
+[gd_scene load_steps=54 format=3 uid="uid://dxqxdh0vyn3ho"]
 
 [ext_resource type="PackedScene" uid="uid://cmfuennfc3qx8" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://dbu2l08ig2b2m" path="res://scripts/enemy_spawner.gd" id="2_lnu2h"]
@@ -920,6 +920,67 @@ _data = {
 &"w5": SubResource("Animation_sww3w")
 }
 
+[sub_resource type="Animation" id="Animation_suyxu"]
+resource_name = "blackout"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Music:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 2.5, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -5.0, -10.0, -20.0, -80.0]
+}
+
+[sub_resource type="Animation" id="Animation_sgl2t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Music:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qouja"]
+_data = {
+&"RESET": SubResource("Animation_sgl2t"),
+&"blackout": SubResource("Animation_suyxu")
+}
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_u5sy4"]
 atlas = ExtResource("6_p57ef")
 region = Rect2(0, 0, 32, 32)
@@ -1039,6 +1100,15 @@ sup = ExtResource("4_kvuet")
 sown = ExtResource("3_kvuet")
 bell = ExtResource("6_ir15t")
 
+[node name="ColorRect" type="ColorRect" parent="depthcontroller"]
+z_index = 7
+offset_left = -3.0
+offset_top = -1.0
+offset_right = 322.0
+offset_bottom = 182.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
 [node name="lanes" type="Node2D" parent="depthcontroller"]
 
 [node name="depth" parent="depthcontroller/lanes" instance=ExtResource("2_yqjtg")]
@@ -1126,6 +1196,16 @@ self_modulate = Color(0, 0, 0, 1)
 position = Vector2(80, 0)
 texture = ExtResource("14_1kice")
 
+[node name="AnimationPlayer3" type="AnimationPlayer" parent="depthcontroller"]
+libraries = {
+&"": SubResource("AnimationLibrary_qouja")
+}
+
+[node name="Music" type="AudioStreamPlayer2D" parent="depthcontroller"]
+stream = ExtResource("13_kvuet")
+autoplay = true
+bus = &"music"
+
 [node name="base" parent="." node_paths=PackedStringArray("spawner") instance=ExtResource("5_iywne")]
 z_index = 6
 spawner = NodePath("../depthcontroller")
@@ -1202,11 +1282,6 @@ sprite_frames = SubResource("SpriteFrames_ir15t")
 autoplay = "default"
 frame = 6
 frame_progress = 0.155935
-
-[node name="Music" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("13_kvuet")
-autoplay = true
-bus = &"music"
 
 [node name="BellDirt" type="Area2D" parent="."]
 visible = false
